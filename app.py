@@ -1,11 +1,12 @@
 from flask import Flask, render_template
+from models import get_greeting
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def home():
-    return render_template('index.html')
+    greeting = get_greeting()
+    return render_template('index.html', greeting=greeting)
 
 @app.route('/about')
 def about():
@@ -22,6 +23,7 @@ def projects():
 @app.route('/skills')
 def skills():
     return render_template('skills.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
