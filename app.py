@@ -3,6 +3,27 @@ from models import get_greeting
 
 app = Flask(__name__)
 
+project_details = [
+    {
+        "id": 1,
+        "name": "City Rovers FC",
+        "link": "https://james-fitz86.github.io/cityrovers/",
+        "image": "static/images/rovers.png",
+        "description": "Website for a local football team.",
+        "tags": "HTML, CSS",
+
+    },
+    {
+        "id": 2,
+        "name": "Betty's Bakes",
+        "link": "https://james-fitz86.github.io/bettysbakes/",
+        "image": "static/images/bettys.png",
+        "description": "Website for baking Recipes",
+        "tags": "HTML, CSS, Javascript",
+    }
+
+]
+
 @app.route('/')
 def home():
     greeting = get_greeting()
@@ -18,7 +39,8 @@ def contact():
 
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+
+    return render_template('projects.html', projects=project_details)
 
 @app.route('/skills')
 def skills():
