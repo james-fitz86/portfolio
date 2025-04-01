@@ -83,9 +83,6 @@ footer p{
   padding: 16px;
   color: #000000;
   background-color: #ffffff;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 8px;
   min-width: 250px;
   max-width: 400px;
