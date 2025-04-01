@@ -71,3 +71,32 @@ footer p{
     margin-bottom: 16px;
 }
 }
+#project-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-around;
+}
+.project {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 16px;
+  color: #000000;
+  background-color: #ffffff;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  min-width: 250px;
+  max-width: 400px;
+  height: 300px;
+}
+.project img{
+  display: block;
+  min-width: 118px;
+  max-width: 268px;
+  margin: 1rem auto;
+}
+.project:hover{
+  scale: 1.05;
+}
