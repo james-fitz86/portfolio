@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request, redirect, url_for
 from models import get_greeting
 
 app = Flask(__name__)
@@ -23,6 +23,7 @@ project_details = [
     }
 
 ]
+comment_datastore = {}
 
 @app.route('/')
 def home():
@@ -40,7 +41,18 @@ def contact():
 @app.route('/projects')
 def projects():
 
-    return render_template('projects.html', projects=project_details)
+    return render_template('projects.html', projects=project_details, comments=comment_datastore)
+
+@app.route("/comment_entry", methods=["POST"])
+def enter_comment():
+    """Enter a comment."""
+
+    name = request.form["name"]
+    message = request.form["message"]
+
+    comment_datastore[name] = message
+
+    return redirect(url_for("projects"))
 
 @app.route('/skills')
 def skills():
