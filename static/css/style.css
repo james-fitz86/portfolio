@@ -74,39 +74,58 @@ footer p{
 }
 #project-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 16px;
-  justify-content: space-around;
+  align-items: center;
 }
 .project {
-  flex: 1;
+  display: block;
   box-sizing: border-box;
   padding: 16px;
   color: #000000;
   background-color: #ffffff;
   border-radius: 8px;
-  min-width: 250px;
-  max-width: 400px;
-  height: 300px;
+  width: clamp(250px, 60vw, 800px);
+  height: auto;
+  overflow-x: auto;
 }
 .project img{
   display: block;
-  min-width: 118px;
-  max-width: 268px;
+  width: clamp(228px, 30vw, 768px);
+  max-width: 100%;
   margin: 1rem auto;
 }
 .project:hover{
-  scale: 1.05;
+  outline: 2px solid #1dd399;
 }
 .formtext{
-  color: #ffffff;
+  color: #000000;
 }
 .custom-btn {
   background-color: #1dd399 !important;
-  /* border-color: #ff6600 !important; */
 }
-
 .custom-btn:hover {
   background-color: #17b885 !important;
-  /* border-color: #aa4400 !important; */
+  color: #ffffff !important;
+}
+.project .table {
+  width: 100%;
+  table-layout: auto;
+  margin-bottom: 1rem;
+}
+.project .table td, 
+.project .table th {
+  word-wrap: break-word;
+  white-space: normal;
+}
+.project form {
+  width: 100%;
+}
+
+.project .form-control {
+  width: 100%;
+}
+
+.project .input-group-text {
+  width: auto;
 }
