@@ -13,6 +13,7 @@ main{
   padding-top: 80px;
   background-color: #1a1818;
   color: #ffffff;
+  font-family: 'Poppins', sans-serif;
 }
 main h1{
   font-size: clamp(1.6rem, calc(2vw + 1rem), 5rem);
@@ -96,4 +97,16 @@ footer p{
 }
 .project:hover{
   scale: 1.05;
+}
+.formtext{
+  color: #ffffff;
+}
+.custom-btn {
+  background-color: #1dd399 !important;
+  /* border-color: #ff6600 !important; */
+}
+
+.custom-btn:hover {
+  background-color: #17b885 !important;
+  /* border-color: #aa4400 !important; */
 }
