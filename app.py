@@ -23,7 +23,10 @@ project_details = [
     }
 
 ]
-comment_datastore = {}
+comment_datastore = {
+    1: [],
+    2: [],
+}
 
 @app.route('/')
 def home():
@@ -43,15 +46,15 @@ def projects():
 
     return render_template('projects.html', projects=project_details, comments=comment_datastore)
 
-@app.route("/comment_entry", methods=["POST"])
-def enter_comment():
+@app.route("/comment_entry/<int:project_id>", methods=["POST"])
+def enter_comment(project_id):
     """Enter a comment."""
 
     name = request.form["name"]
     message = request.form["message"]
 
-    comment_datastore[name] = message
-
+    comment_datastore[project_id].append({"name": name, "message": message})
+    
     return redirect(url_for("projects"))
 
 @app.route('/skills')
