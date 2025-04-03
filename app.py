@@ -26,9 +26,12 @@ project_details = [
 
 ]
 comment_datastore = {
-    1: [],
-    2: [],
+    1: [{'name': 'Joe Bloggs', 'message': 'Thats awesome'}, {'name': 'Bob', 'message': 'Cool'}],
+    2: [{'name': 'Jane Doe', 'message': 'Good work!'}, {'name': 'Bill', 'message': 'Love it!'}],
 }
+
+admin_username = "James"
+admin_password = "abc123xyz"
 
 @app.route('/')
 def home():
@@ -66,7 +69,8 @@ def skills():
 @app.route('/admin')
 def admin():
     if "username" in session:
-        return render_template('admin.html')
+        print(comment_datastore)
+        return render_template('admin.html', projects=project_details, comments=comment_datastore)
 
 
     return redirect(url_for("login"))
@@ -83,7 +87,7 @@ def internal_error(error):
 def raise_500_error():
     abort(500)
 
-@app.route("/login", methods=["GET"])
+@app.route("/admin-login-1986", methods=["GET"])
 def login():
     """Login page for the app.
 
@@ -97,12 +101,17 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/admin-login-1986", methods=["POST"])
 def login_action():
     """Login action for the app (same route as the form)."""
-    session["username"] = request.form["username"]
+    username = request.form.get("username")
+    password = request.form.get("password")
 
-    return redirect(url_for("admin"))
+    if username == admin_username and password == admin_password:
+        session["username"] = request.form["username"]
+        return redirect(url_for("admin"))
+    
+    return render_template("login.html", error="Inavlid input")
 
 
 @app.route("/logout")
