@@ -46,11 +46,10 @@
         <footer>
           <p>Designed by James</p>
           {% if session['username'] %}
-          <a href="{{ url_for('admin') }}">Admin Page</a>
-          <a href="{{ url_for('logout') }}">Logout</a>
-          
-          {% else %}
-          <a href="{{ url_for('login') }}">Login</a>
+          <div id="footer-links">
+            <a href="{{ url_for('admin') }}">Admin Page</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+          </div>
           {% endif %}
         </footer>
     </div>
