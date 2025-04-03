@@ -1,7 +1,9 @@
-from flask import Flask, render_template, abort, request, redirect, url_for
+from flask import Flask, render_template, abort, request, redirect, url_for, session
 from models import get_greeting
 
 app = Flask(__name__)
+
+app.secret_key = "Replace me with a real secret key for production use"
 
 project_details = [
     {
@@ -61,6 +63,14 @@ def enter_comment(project_id):
 def skills():
     return render_template('skills.html')
 
+@app.route('/admin')
+def admin():
+    if "username" in session:
+        return render_template('admin.html')
+
+
+    return redirect(url_for("login"))
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('errors/404.html', error=error), 404
@@ -72,6 +82,42 @@ def internal_error(error):
 @app.route('/raise_500')
 def raise_500_error():
     abort(500)
+
+@app.route("/login", methods=["GET"])
+def login():
+    """Login page for the app.
+
+    If the user is not logged in, display the login form.
+    """
+
+    if "username" in session:
+        return redirect(url_for("home"))
+
+
+    return render_template("login.html")
+
+
+@app.route("/login", methods=["POST"])
+def login_action():
+    """Login action for the app (same route as the form)."""
+    session["username"] = request.form["username"]
+
+    return redirect(url_for("admin"))
+
+
+@app.route("/logout")
+def logout():
+    """Logout action for the app.
+
+    This removes the user from the session.
+
+    Note that semantically, this should be a POST request,
+    but using GET for logging out is simpler and popular.
+    """
+    session.pop("username", None)
+
+    return redirect(url_for("home"))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
