@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index
 from dotenv import load_dotenv
 import os
 
@@ -53,6 +53,10 @@ def admin():
 def raise_500_error():
     abort(500)
 
+@routes_blueprint.route('/raise_404')
+def raise_404_error():
+    abort(404)
+
 @routes_blueprint.route("/admin-login-1986", methods=["GET"])
 def login():
     """Login page for the app.
@@ -93,6 +97,13 @@ def logout():
     session.pop("username", None)
 
     return redirect(url_for("routes.home"))
+
+@routes_blueprint.route("/delete-comment", methods=["POST"])
+def delete_comment_route():
+    project_id = request.form["project_id"]
+    index = int(request.form["index"])
+    delete_comment_by_index(project_id, index)
+    return redirect(url_for("routes.admin"))
 
 @routes_blueprint.errorhandler(404)
 def not_found_error(error):
