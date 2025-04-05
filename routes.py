@@ -1,35 +1,12 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting
+from models import get_greeting, get_projects, get_comments, add_comment
+from dotenv import load_dotenv
+import os
 
 routes_blueprint = Blueprint('routes', __name__)
 
-project_details = [
-    {
-        "id": 1,
-        "name": "City Rovers FC",
-        "link": "https://james-fitz86.github.io/cityrovers/",
-        "image": "static/images/rovers.png",
-        "description": "Website for a local football team.",
-        "tags": "HTML, CSS",
-
-    },
-    {
-        "id": 2,
-        "name": "Betty's Bakes",
-        "link": "https://james-fitz86.github.io/bettysbakes/",
-        "image": "static/images/bettys.png",
-        "description": "Website for baking Recipes",
-        "tags": "HTML, CSS, Javascript",
-    }
-
-]
-comment_datastore = {
-    1: [{'name': 'Joe Bloggs', 'message': 'Thats awesome'}, {'name': 'Bob', 'message': 'Cool'}],
-    2: [{'name': 'Jane Doe', 'message': 'Good work!'}, {'name': 'Bill', 'message': 'Love it!'}],
-}
-
-admin_username = "James"
-admin_password = "abc123xyz"
+admin_username = os.getenv("ADMIN_USERNAME")
+admin_password = os.getenv("ADMIN_PASSWORD")
 
 @routes_blueprint.route('/')
 def home():
@@ -47,7 +24,7 @@ def contact():
 @routes_blueprint.route('/projects')
 def projects():
 
-    return render_template('projects.html', projects=project_details, comments=comment_datastore)
+    return render_template('projects.html', projects=get_projects(), comments=get_comments())
 
 @routes_blueprint.route("/comment_entry/<int:project_id>", methods=["POST"])
 def enter_comment(project_id):
@@ -56,7 +33,7 @@ def enter_comment(project_id):
     name = request.form["name"]
     message = request.form["message"]
 
-    comment_datastore[project_id].append({"name": name, "message": message})
+    add_comment(project_id, name, message)
     
     return redirect(url_for("routes.projects"))
 
@@ -67,8 +44,7 @@ def skills():
 @routes_blueprint.route('/admin')
 def admin():
     if "username" in session:
-        print(comment_datastore)
-        return render_template('admin.html', projects=project_details, comments=comment_datastore)
+        return render_template('admin.html', projects=get_projects(), comments=get_comments())
 
 
     return redirect(url_for("routes.home"))
@@ -94,6 +70,7 @@ def login():
 @routes_blueprint.route("/admin-login-1986", methods=["POST"])
 def login_action():
     """Login action for the app (same route as the form)."""
+
     username = request.form.get("username")
     password = request.form.get("password")
 

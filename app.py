@@ -1,9 +1,12 @@
 from flask import Flask
 from routes import routes_blueprint
+from models import init_shelve
 
 app = Flask(__name__)
 
 app.secret_key = "Replace me with a real secret key for production use"
+
+init_shelve()
 
 app.register_blueprint(routes_blueprint)
 
