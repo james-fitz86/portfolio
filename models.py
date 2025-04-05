@@ -36,3 +36,12 @@ def add_comment(project_id, name, message):
         comments.setdefault(project_id, []).append({"name": name, "message": message})
         db["comments"] = comments
         db.sync()
+
+def delete_comment_by_index(project_id, index):
+    with shelve.open("data/data_store", writeback=True) as db:
+        comments = db.get("comments", {})
+        project_id = int(project_id)
+        if project_id in comments and 0 <= index < len(comments[project_id]):
+            del comments[project_id][index]
+            db["comments"] = comments
+            db.sync()
