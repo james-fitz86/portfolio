@@ -15,12 +15,12 @@
                 <div class="comments-container">
                   {% for comment in comments.get(project.id, []) %}
                       <div class="comment">
-                          <h4>{{ comment.name }}</h4>
-                          <p>{{ comment.message }}</p>
+                        <h4>{{ comment.name }}</h4>
+                        <p>{{ comment.message }}</p>
                       </div>
                   {% endfor %}
               </div>
-                <form action="{{ url_for('enter_comment', project_id=project.id) }}" method="POST">
+                <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST">
                   <h3>Add a comment below!</h3>
                   <div class="input-group mb-3">
                     <input type="text" name="name" class="form-control" placeholder="Your name" required>
