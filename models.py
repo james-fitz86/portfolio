@@ -37,6 +37,16 @@ def add_comment(project_id, name, message):
         db["comments"] = comments
         db.sync()
 
+def add_like(project_id):
+    with shelve.open("data/data_store", writeback=True) as db:
+        projects = db.get("projects", [])
+        for project in projects:
+            if project["id"] == project_id:
+                project["likes"] += 1
+                break
+        db["projects"] = projects
+        db.sync()
+
 def delete_comment_by_index(project_id, index):
     with shelve.open("data/data_store", writeback=True) as db:
         comments = db.get("comments", {})
