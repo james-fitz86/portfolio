@@ -6,7 +6,8 @@
         "link": "https://james-fitz86.github.io/cityrovers/",
         "image": "static/images/rovers.png",
         "description": "Website for a local football team.",
-        "tags": "HTML, CSS"
+        "tags": "HTML, CSS",
+        "likes": 0
       },
       {
         "id": 2,
@@ -14,17 +15,18 @@
         "link": "https://james-fitz86.github.io/bettysbakes/",
         "image": "static/images/bettys.png",
         "description": "Website for baking Recipes",
-        "tags": "HTML, CSS, Javascript"
+        "tags": "HTML, CSS, Javascript",
+        "likes": 0
       }
     ],
     "comment_datastore": {
       "1": [
-        {"name": "Joe Bloggs2", "message": "Thats awesome"},
-        {"name": "Bob3", "message": "Cool"}
+        {"name": "Joe Bloggs", "message": "Thats awesome"},
+        {"name": "Bob", "message": "Cool"}
       ],
       "2": [
-        {"name": "Jane Doe5", "message": "Good work!"},
-        {"name": "Bill6", "message": "Love it!"}
+        {"name": "Jane Doe", "message": "Good work!"},
+        {"name": "Bill", "message": "Love it!"}
       ]
     }
   }
