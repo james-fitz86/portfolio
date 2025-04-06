@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like
 from dotenv import load_dotenv
 import os
 
@@ -104,6 +104,11 @@ def delete_comment_route():
     index = int(request.form["index"])
     delete_comment_by_index(project_id, index)
     return redirect(url_for("routes.admin"))
+
+@routes_blueprint.route('/like/<int:project_id>', methods=["POST"])
+def likes(project_id):
+    add_like(project_id)
+    return redirect(url_for("routes.projects"))
 
 @routes_blueprint.errorhandler(404)
 def not_found_error(error):
