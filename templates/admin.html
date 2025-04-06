@@ -5,10 +5,11 @@
 {% block main %}
 <h1>Admin Page</h1>
         <div id="project-wrapper">
-            <h2>Delete Project Comments</h2>
+            <h2>Projects Overview</h2>
             {% for project in projects %}
             <div class="project">
                 <h2>{{ project.name }}</h2>
+                <p>Number of Likes: {{ project.likes }}</p>
                 <h3>Comments</h3>
                 <div class="comments-container">
                   {% for comment in comments.get(project.id, []) %}
