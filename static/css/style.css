@@ -139,3 +139,31 @@ footer p{
 .project .input-group-text {
   width: auto;
 }
+.skills-container {
+  max-width: 600px;
+}
+
+.skill {
+  margin-bottom: 1.3rem;
+}
+.progress-bar-container {
+  margin-top: 0.8rem;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 30px;
+  width: 100%;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+.badge {
+  background-color: #f39c12;
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin-left: 10px;
+}
