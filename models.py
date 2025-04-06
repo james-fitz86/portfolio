@@ -21,6 +21,7 @@ def init_shelve():
                 data = json.load(f)
             db["projects"] = data["project_details"]
             db["comments"] = {int(k): v for k, v in data["comment_datastore"].items()}
+            db["skills"] = data["skills_details"]
 
 def get_projects():
     with shelve.open("data/data_store") as db:
@@ -29,6 +30,10 @@ def get_projects():
 def get_comments():
     with shelve.open("data/data_store") as db:
         return db.get("comments", {})
+
+def get_skills():
+    with shelve.open("data/data_store") as db:
+        return db.get("skills", {})
 
 def add_comment(project_id, name, message):
     with shelve.open("data/data_store", writeback=True) as db:
