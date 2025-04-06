@@ -28,5 +28,11 @@
         {"name": "Jane Doe", "message": "Good work!"},
         {"name": "Bill", "message": "Love it!"}
       ]
+    },
+    "skills_details":{
+      "HTML": 91,
+      "CSS": 90,
+      "Javascript": 75,
+      "Python": 60
     }
   }
