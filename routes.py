@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages
 from dotenv import load_dotenv
 import os
 
@@ -21,6 +21,18 @@ def about():
 @routes_blueprint.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@routes_blueprint.route('/submit_contact', methods=[ "POST"])
+def submit_contact():
+    name = request.form['name']
+    email = request.form['email']
+    subject = request.form['subject']
+    message = request.form['message']
+
+    add_message(name, email, subject, message)
+    return render_template('contact.html', success=True)
+
+   
 
 @routes_blueprint.route('/projects')
 def projects():
@@ -46,7 +58,7 @@ def skills():
 @routes_blueprint.route('/admin')
 def admin():
     if "username" in session:
-        return render_template('admin.html', projects=get_projects(), comments=get_comments())
+        return render_template('admin.html', projects=get_projects(), comments=get_comments(), messages=get_messages())
 
 
     return redirect(url_for("routes.home"))
