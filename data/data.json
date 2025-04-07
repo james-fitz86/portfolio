@@ -34,5 +34,13 @@
       "CSS": 90,
       "Javascript": 75,
       "Python": 60
-    }
+    },
+    "contact_datastore": [
+      {
+      "name": "John Doe",
+      "email": "johnd@example.com",
+      "subject": "Test",
+      "message": "Hello, this is a test message from John Doe, johnd@example.com"
+      }
+    ]
   }
