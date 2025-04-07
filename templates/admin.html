@@ -27,4 +27,15 @@
               </div>
               {% endfor %}
         </div>
+        <div id="contact-wrapper">
+          <h2>Contact submissions</h2>
+            {% for message in messages %}
+            <div class="message">
+              <p>{{ message.name }}</p>
+              <p>{{ message.email }}</p>
+              <p>{{ message.subject }}</p>
+              <p>{{ message.message }}</p>
+            </div>
+            {% endfor %}
+        </div>
 {% endblock %}
