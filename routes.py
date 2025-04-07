@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience
 from dotenv import load_dotenv
 import os
 
@@ -15,7 +15,8 @@ def home():
 
 @routes_blueprint.route('/about')
 def about():
-    return render_template('about.html')
+    experience = get_experience()
+    return render_template('about.html', experience=experience)
 
 @routes_blueprint.route('/contact')
 def contact():
