@@ -60,3 +60,13 @@ def delete_comment_by_index(project_id, index):
             del comments[project_id][index]
             db["comments"] = comments
             db.sync()
+
+def get_experience():
+    start_date = datetime(2024, 9, 24)
+    today = datetime.now()
+
+    months_since = (today.year - start_date.year)*12 + (today.month - start_date.month)
+    if today.day < start_date.day:
+        months_since -= 1
+
+    return months_since
