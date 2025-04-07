@@ -16,12 +16,13 @@ def get_greeting():
 
 def init_shelve():
     with shelve.open('data/data_store') as db:
-        if "projects" not in db or "comments" not in db:
+        if "projects" not in db or "comments" not in db or "messages" not in db:
             with open("data/data.json") as f:
                 data = json.load(f)
             db["projects"] = data["project_details"]
             db["comments"] = {int(k): v for k, v in data["comment_datastore"].items()}
             db["skills"] = data["skills_details"]
+            db["messages"] = data["contact_datastore"]
 
 def get_projects():
     with shelve.open("data/data_store") as db:
@@ -34,6 +35,25 @@ def get_comments():
 def get_skills():
     with shelve.open("data/data_store") as db:
         return db.get("skills", {})
+
+def get_messages():
+    with shelve.open("data/data_store") as db:
+        return db.get("messages", [])
+
+def add_message(name, email, subject, message):
+     
+    new_message = {
+        "name": name,
+        "email": email,
+        "subject": subject,
+        "message": message
+    }
+
+    with shelve.open('data/data_store', writeback=True) as db:
+        messages = db['messages']
+        messages.append(new_message)
+        db['messages'] = messages
+        db.sync()
 
 def add_comment(project_id, name, message):
     with shelve.open("data/data_store", writeback=True) as db:
