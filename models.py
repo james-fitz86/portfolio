@@ -98,3 +98,8 @@ def get_experience():
         months_since -= 1
 
     return months_since
+
+def save_skills(updated_skills, path="data/data_store"):
+    with shelve.open(path, writeback=True) as db:
+        db["skills"] = updated_skills
+        db.sync()
