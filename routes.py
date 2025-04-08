@@ -130,10 +130,11 @@ def likes(project_id):
     add_like(project_id)
     return redirect(url_for("routes.projects"))
 
-@routes_blueprint.errorhandler(404)
-def not_found_error(error):
-    return render_template('errors/404.html', error=error), 404
+def register_error_handlers(app):
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('errors/404.html', error=error), 404
 
-@routes_blueprint.errorhandler(500)
-def internal_error(error):
-    return render_template('errors/500.html', error=error), 500
+    @app.errorhandler(500)
+    def internal_error(error):
+        return render_template('errors/500.html', error=error), 500
