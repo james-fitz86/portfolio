@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message, save_skills
 from dotenv import load_dotenv
 import os
 
@@ -58,7 +58,7 @@ def skills():
 @routes_blueprint.route('/admin')
 def admin():
     if "username" in session:
-        return render_template('admin.html', projects=get_projects(), comments=get_comments(), messages=get_messages())
+        return render_template('admin.html', projects=get_projects(), comments=get_comments(), messages=get_messages(), skills=get_skills())
 
 
     return redirect(url_for("routes.home"))
@@ -129,6 +129,18 @@ def delete_message_route():
 def likes(project_id):
     add_like(project_id)
     return redirect(url_for("routes.projects"))
+
+@routes_blueprint.route("/admin/skills", methods=["POST"])
+def update_skills():
+    updated_skills = {}
+    for key in request.form:
+        try:
+            updated_skills[key] = int(request.form[key])
+        except ValueError:
+            continue
+
+    save_skills(updated_skills)
+    return redirect(url_for("routes.admin"))
 
 def register_error_handlers(app):
     @app.errorhandler(404)
