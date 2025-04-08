@@ -4,7 +4,7 @@
 
 {% block main %}
 <h1>Admin Page</h1>
-        <div id="project-wrapper">
+        <div class="admin-wrapper">
             <h2>Projects Overview</h2>
             {% for project in projects %}
             <div class="project">
@@ -27,10 +27,10 @@
               </div>
               {% endfor %}
         </div>
-        <div id="contact-wrapper">
+        <div class="admin-wrapper">
           <h2>Contact submissions</h2>
             {% for message in messages %}
-            <div class="message">
+            <div class="admin-section-container">
               <p>{{ message.name }}</p>
               <p>{{ message.email }}</p>
               <p>{{ message.subject }}</p>
@@ -42,8 +42,36 @@
             </div>
             {% endfor %}
         </div>
-        <div>
+        <div class="admin-wrapper">
+          <h2>Edit Skills</h2>
+          <div class="admin-section-container">
+            <form method="POST" action="{{ url_for('routes.update_skills') }}">
+              <table class="table table-bordered align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Skill</th>
+                    <th>Level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for skill, level in skills.items() %}
+                  <tr>
+                    <td>{{ skill }}</td>
+                    <td>
+                      <input type="number" name="{{ skill }}" value="{{ level }}" min="0" max="100" required>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <button type="submit" class="btn custom-btn">Save Changes</button>
+            </form>
+          </div>
+        </div>
+        <div class="admin-wrapper">
           <h2>Force 500 error</h2>
-          <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
+          <div class="admin-section-container">
+            <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
+          </div>
         </div>
 {% endblock %}
