@@ -42,4 +42,8 @@
             </div>
             {% endfor %}
         </div>
+        <div>
+          <h2>Force 500 error</h2>
+          <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
+        </div>
 {% endblock %}
