@@ -81,6 +81,14 @@ def delete_comment_by_index(project_id, index):
             db["comments"] = comments
             db.sync()
 
+def delete_message(index):
+    with shelve.open("data/data_store", writeback=True) as db:
+        messages = db['messages']
+        if 0 <= index < len(messages):
+            del messages[index]
+            db["messages"] = messages
+            db.sync()
+
 def get_experience():
     start_date = datetime(2024, 9, 24)
     today = datetime.now()
