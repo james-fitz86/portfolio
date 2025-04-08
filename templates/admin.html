@@ -35,6 +35,10 @@
               <p>{{ message.email }}</p>
               <p>{{ message.subject }}</p>
               <p>{{ message.message }}</p>
+              <form action="{{ url_for('routes.delete_message_route') }}" method="post">
+                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                <button type="submit" class="btn custom-btn">Delete</button>
+              </form>
             </div>
             {% endfor %}
         </div>
