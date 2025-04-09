@@ -27,20 +27,26 @@
               </div>
               {% endfor %}
         </div>
-        <div class="admin-wrapper">
+        <div class="message-wrapper">
           <h2>Contact submissions</h2>
-            {% for message in messages %}
-            <div class="admin-section-container">
-              <p>{{ message.name }}</p>
-              <p>{{ message.email }}</p>
-              <p>{{ message.subject }}</p>
-              <p>{{ message.message }}</p>
-              <form action="{{ url_for('routes.delete_message_route') }}" method="post">
-                <input type="hidden" name="index" value="{{ loop.index0 }}">
-                <button type="submit" class="btn custom-btn">Delete</button>
-              </form>
+          <div class="arrow-container">
+              <div class="message-scroll">
+                <span class="arrow previous" tabindex="0" role="button" aria-label="Scroll left">&larr;</span>
+                {% for message in messages %}
+                <div class="message-container">
+                  <h3>{{ message.name }}</h3>
+                  <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                  <h4>{{ message.subject }}</h4>
+                  <p>{{ message.message }}</p>
+                  <form action="{{ url_for('routes.delete_message_route') }}" method="post">
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="btn custom-btn">Delete</button>
+                  </form>
+                </div>
+                {% endfor %}
+                <span class="arrow next" tabindex="0" role="button" aria-label="Scroll right">&rarr;</span>
+              </div>
             </div>
-            {% endfor %}
         </div>
         <div class="admin-wrapper">
           <h2>Edit Skills</h2>
