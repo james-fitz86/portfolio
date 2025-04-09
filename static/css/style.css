@@ -167,7 +167,7 @@ footer p{
   font-size: 1rem;
   margin-left: 10px;
 }
-.admin-section-container{
+.admin-section-container{ 
   display: block;
   box-sizing: border-box;
   padding: 16px;
@@ -178,7 +178,7 @@ footer p{
   height: auto;
   border-bottom: 1px solid #000000;
 }
-.admin-wrapper{
+.admin-wrapper, .message-wrapper{
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -187,4 +187,55 @@ footer p{
 }
 .custom-thead{
   background-color: #17b885;
+}
+.arrow-container{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: clamp(250px, 80vw, 800px);
+}
+
+.message-scroll{
+  position: relative;
+  display: flex;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  flex: 1;
+  margin: 0 auto;
+  width: clamp(250px, 80vw, 800px);
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.arrow{
+  top: 120px;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem;
+  color: #1dd399;
+}
+
+.arrow:hover{
+  color: #17b885;
+}
+.arrow.previous{
+  left: 0.1rem;
+}
+
+.arrow.next{
+  right: 0.1rem;
+}
+.message-container{
+  flex: 0 0 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 16px;
+  color: #000000;
+  max-width: clamp(180px, 60vw, 730px);
+  margin: 0 auto;
+  height: auto;
 }
