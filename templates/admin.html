@@ -75,6 +75,58 @@
           </div>
         </div>
         <div class="admin-wrapper">
+          <h2>Edit Projects</h2>
+          <div class="admin-section-container">
+            {% for project in projects %}
+            <form method="POST" action="{{ url_for('routes.update_projects') }}">
+              <input type="hidden" name="id" value="{{ project.id }}">
+              <h3>{{ project.name }}</h3>
+              <table class="table table-bordered align-right">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Field</th>
+                    <th>Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td>
+                      <input class="form-control" style="width: 100%" type="text" name="name" value="{{ project.name }}" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Link</td>
+                    <td>
+                      <input class="form-control" style="width: 100%" type="url" name="link" value="{{ project.link }}" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Image</td>
+                    <td>
+                      <input class="form-control" style="width: 100%" type="text" name="image" value="{{ project.image }}" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Description</td>
+                    <td>
+                      <input class="form-control" style="width: 100%;" type="text" name="description" value="{{ project.description }}" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tags</td>
+                    <td>
+                      <input class="form-control" style="width: 100%" type="text" name="tags" value="{{ project.tags }}" required>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn custom-btn">Save Changes</button>
+            </form>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="admin-wrapper">
           <h2>Force 500 error</h2>
           <div class="admin-section-container">
             <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
