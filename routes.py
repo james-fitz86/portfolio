@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message, save_skills
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message, save_skills, edit_project
 from dotenv import load_dotenv
 import os
+import shelve
 
 routes_blueprint = Blueprint('routes', __name__)
 
@@ -140,6 +141,11 @@ def update_skills():
             continue
 
     save_skills(updated_skills)
+    return redirect(url_for("routes.admin"))
+
+@routes_blueprint.route("/admin/update-projects", methods=["POST"])
+def update_projects():
+    edit_project(request.form)
     return redirect(url_for("routes.admin"))
 
 def register_error_handlers(app):
