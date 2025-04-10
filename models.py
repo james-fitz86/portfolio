@@ -103,3 +103,27 @@ def save_skills(updated_skills, path="data/data_store"):
     with shelve.open(path, writeback=True) as db:
         db["skills"] = updated_skills
         db.sync()
+
+def edit_project(data, path="data/data_store"):
+    project_id = data.get("id")
+
+    with shelve.open(path, writeback=True) as db:
+        current_projects = db.get("projects", [])
+        updated_projects = []
+
+        for project in current_projects:
+            if str(project["id"]) == project_id:
+                updated_projects.append({
+                    "id": project["id"],
+                    "name": data.get("name", project["name"]),
+                    "link": data.get("link", project["link"]),
+                    "image": data.get("image", project["image"]),
+                    "description": data.get("description", project["description"]),
+                    "tags": data.get("tags", project["tags"]),
+                    "likes": project["likes"],
+                })
+            else:
+                updated_projects.append(project)
+
+        db["projects"] = updated_projects
+        db.sync()
