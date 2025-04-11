@@ -40,7 +40,7 @@
                   <p>{{ message.message }}</p>
                   <form action="{{ url_for('routes.delete_message_route') }}" method="post">
                     <input type="hidden" name="index" value="{{ loop.index0 }}">
-                    <button type="submit" class="btn custom-btn">Delete</button>
+                    <button type="submit" class="btn btn-danger custom-btn2">Delete</button>
                   </form>
                 </div>
                 {% endfor %}
@@ -75,54 +75,59 @@
           </div>
         </div>
         <div class="admin-wrapper">
-          <h2>Edit Projects</h2>
+          <h2>Edit/Delete Projects</h2>
           <div class="admin-section-container">
             {% for project in projects %}
-            <form method="POST" action="{{ url_for('routes.update_projects') }}">
-              <input type="hidden" name="id" value="{{ project.id }}">
-              <h3>{{ project.name }}</h3>
-              <table class="table table-bordered align-right">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Field</th>
-                    <th>Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name</td>
-                    <td>
-                      <input class="form-control" style="width: 100%" type="text" name="name" value="{{ project.name }}" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Link</td>
-                    <td>
-                      <input class="form-control" style="width: 100%" type="url" name="link" value="{{ project.link }}" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Image</td>
-                    <td>
-                      <input class="form-control" style="width: 100%" type="text" name="image" value="{{ project.image }}" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Description</td>
-                    <td>
-                      <input class="form-control" style="width: 100%;" type="text" name="description" value="{{ project.description }}" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tags</td>
-                    <td>
-                      <input class="form-control" style="width: 100%" type="text" name="tags" value="{{ project.tags }}" required>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <button type="submit" class="btn custom-btn">Save Changes</button>
-            </form>
+            <div class="edit-delete-container">
+              <form method="POST" action="{{ url_for('routes.update_projects') }}">
+                <input type="hidden" name="id" value="{{ project.id }}">
+                <h3>{{ project.name }}</h3>
+                <table class="table table-bordered align-right">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>Field</th>
+                      <th>Data</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Name</td>
+                      <td>
+                        <input class="form-control" style="width: 100%" type="text" name="name" value="{{ project.name }}" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Link</td>
+                      <td>
+                        <input class="form-control" style="width: 100%" type="url" name="link" value="{{ project.link }}" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Image</td>
+                      <td>
+                        <input class="form-control" style="width: 100%" type="text" name="image" value="{{ project.image }}" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
+                      <td>
+                        <input class="form-control" style="width: 100%;" type="text" name="description" value="{{ project.description }}" required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Tags</td>
+                      <td>
+                        <input class="form-control" style="width: 100%" type="text" name="tags" value="{{ project.tags }}" required>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                  <button type="submit" class="btn custom-btn">Save Changes</button>
+              </form>
+              <form method="POST" action="{{ url_for('routes.delete_projects', project_id=project.id) }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                <button class="btn btn-danger custom-btn2" type="submit">Delete Project</button>
+              </form>
+            </div>
             {% endfor %}
           </div>
         </div>
@@ -164,7 +169,7 @@
               </table>
               <button class="btn custom-btn" type="submit">Add Project</button>
             </form>
-        </div>
+          </div>
         </div>
         <div class="admin-wrapper">
           <h2>Force 500 error</h2>
