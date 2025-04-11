@@ -146,3 +146,10 @@ def add_project(data, path="data/data_store"):
         projects.append(new_project)
         db["projects"] = projects
         db.sync()
+
+def delete_project(project_id, path="data/data_store"):
+    with shelve.open(path, writeback=True) as db:
+        projects = db.get("projects", [])
+        projects = [p for p in projects if p["id"] != project_id]
+        db["projects"] = projects
+        db.sync()
