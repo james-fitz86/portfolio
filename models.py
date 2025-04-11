@@ -127,3 +127,22 @@ def edit_project(data, path="data/data_store"):
 
         db["projects"] = updated_projects
         db.sync()
+
+def add_project(data, path="data/data_store"):
+    with shelve.open(path, writeback=True) as db:
+        projects = db.get("projects", [])
+        new_id = max((p["id"] for p in projects), default=0) + 1
+
+        new_project = {
+            "id": new_id,
+            "name":data["name"],
+            "link":data["link"],
+            "image": data["image"],
+            "description":data["description"],
+            "tags":data["tags"],
+            "likes": 0,
+        }
+
+        projects.append(new_project)
+        db["projects"] = projects
+        db.sync()
