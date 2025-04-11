@@ -127,6 +127,46 @@
           </div>
         </div>
         <div class="admin-wrapper">
+          <h3>Add New Project</h3>
+          <div class="admin-section-container">
+            <form method="POST" action="{{ url_for('routes.add_projects') }}">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Name</td>
+                  <td>
+                    <input class="form-control" name="name" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Link</td>
+                  <td>
+                    <input class="form-control" name="link" type="url" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Image</td>
+                  <td>
+                    <input class="form-control" name="image" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>
+                    <input class="form-control" name="description" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tags</td>
+                  <td>
+                    <input class="form-control" name="tags" required>
+                  </td>
+                </tr>
+              </table>
+              <button class="btn custom-btn" type="submit">Add Project</button>
+            </form>
+        </div>
+        </div>
+        <div class="admin-wrapper">
           <h2>Force 500 error</h2>
           <div class="admin-section-container">
             <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
