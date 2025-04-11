@@ -176,7 +176,6 @@ footer p{
   border-radius: 8px;
   width: clamp(250px, 80vw, 800px);
   height: auto;
-  border-bottom: 1px solid #000000;
 }
 .admin-wrapper, .message-wrapper{
   padding-top: 2rem;
@@ -238,4 +237,14 @@ footer p{
   max-width: clamp(180px, 60vw, 730px);
   margin: 0 auto;
   height: auto;
+}
+.custom-btn2{
+  margin-top: 1rem;
+  color: #000000 !important;
+}
+.custom-btn2:hover{
+  color: #ffffff !important;
+}
+.edit-delete-container{
+  padding-top: 2rem;
 }
