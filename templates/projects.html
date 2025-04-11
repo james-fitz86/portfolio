@@ -7,33 +7,33 @@
         <div id="project-wrapper">
             {% for project in projects %}
             <div class="project">
-                <h2>{{ project.name }}</h2>
-                <img src="{{ project.image }}">
-                <a href="{{ project.link }}">Visit Site</a>
-                <p>{{ project.description }}</p>
-                <h3>Comments</h3>
-                <div class="comments-container">
-                  {% for comment in comments.get(project.id, []) %}
-                      <div class="comment">
-                        <h4>{{ comment.name }}</h4>
-                        <p>{{ comment.message }}</p>
-                      </div>
-                  {% endfor %}
-                </div>
-                <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST">
-                  <h3>Add a comment below!</h3>
-                  <div class="input-group mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="Your name" required>
-                    <span class="input-group-text"></span>
-                    <input type="text" name="message" class="form-control" placeholder="Your message">
-                    <button type="submit" class="btn custom-btn">Submit</button>
+              <h2>{{ project.name }}</h2>
+              <img src="{{ project.image }}">
+              <a href="{{ project.link }}">Visit Site</a>
+              <p>{{ project.description }}</p>
+              <h3>Comments</h3>
+              <div class="comments-container">
+                {% for comment in comments.get(project.id, []) %}
+                  <div class="comment">
+                    <h4>{{ comment.name }}</h4>
+                    <p>{{ comment.message }}</p>
                   </div>
-                </form>
-                <form action="{{ url_for('routes.likes', project_id=project.id) }}" method="POST">
-                  <button type="submit" class="btn btn-like">Like ❤️</button>
-                </form>
+                {% endfor %}
               </div>
-              {% endfor %}
+              <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST">
+                <h3>Add a comment below!</h3>
+                <div class="input-group mb-3">
+                  <input type="text" name="name" class="form-control" placeholder="Your name" required>
+                  <span class="input-group-text"></span>
+                  <input type="text" name="message" class="form-control" placeholder="Your message">
+                  <button type="submit" class="btn custom-btn">Submit</button>
+                </div>
+              </form>
+              <form action="{{ url_for('routes.likes', project_id=project.id) }}" method="POST">
+                <button type="submit" class="btn btn-like">Like ❤️</button>
+              </form>
+            </div>
+            {% endfor %}
         </div>
     
 {% endblock %}
