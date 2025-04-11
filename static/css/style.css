@@ -239,7 +239,7 @@ footer p{
   height: auto;
 }
 .custom-btn2{
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   color: #000000 !important;
 }
 .custom-btn2:hover{
@@ -247,4 +247,11 @@ footer p{
 }
 .edit-delete-container{
   padding-top: 2rem;
+}
+.custom-btn3{
+  margin-top: 1rem;
+  color: #000000 !important;
+}
+.custom-btn3:hover{
+  color: #ffffff !important;
 }
