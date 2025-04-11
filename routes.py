@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session
-from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message, save_skills, edit_project, add_project
+from models import get_greeting, get_projects, get_comments, add_comment, delete_comment_by_index, add_like, get_skills, get_experience, add_message, get_messages, delete_message, save_skills, edit_project, add_project, delete_project
 from dotenv import load_dotenv
 import os
 
@@ -150,6 +150,11 @@ def update_projects():
 @routes_blueprint.route("/admin/add-projects", methods=["POST"])
 def add_projects():
     add_project(request.form)
+    return redirect(url_for("routes.admin"))
+
+@routes_blueprint.route("/admin/delete-project/<int:project_id>", methods=["POST"])
+def delete_projects(project_id):
+    delete_project(project_id)
     return redirect(url_for("routes.admin"))
 
 def register_error_handlers(app):
