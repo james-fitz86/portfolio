@@ -21,25 +21,25 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.home' %}active{% endif %}" aria-current="page" href="{{ url_for('routes.home') }}">Home</a>
+                <a class="nav-link {% if request.endpoint == 'routes.home' %}active{% endif %}" aria-current="page" href="{{ url_for('routes.home') }}" aria-label="Go to Home page">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.projects' %}active{% endif %}" href="{{ url_for('routes.projects') }}">Projects</a>
+                <a class="nav-link {% if request.endpoint == 'routes.projects' %}active{% endif %}" href="{{ url_for('routes.projects') }}" aria-label="Go to Projects page">Projects</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.skills' %}active{% endif %}" href="{{ url_for('routes.skills') }}">Skills</a>
+                <a class="nav-link {% if request.endpoint == 'routes.skills' %}active{% endif %}" href="{{ url_for('routes.skills') }}" aria-label="Go to Skills page">Skills</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.about' %}active{% endif %}" href="{{ url_for('routes.about') }}">About</a>
+                <a class="nav-link {% if request.endpoint == 'routes.about' %}active{% endif %}" href="{{ url_for('routes.about') }}" aria-label="Go to About page">About</a>
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.contact' %}active{% endif %}" href="{{ url_for('routes.contact') }}">Contact</a>
+                <a class="nav-link {% if request.endpoint == 'routes.contact' %}active{% endif %}" href="{{ url_for('routes.contact') }}" aria-label="Go to Contact page">Contact</a>
               </li>
               {% if session['username'] %}
               <li class="nav-item">
-                <a class="nav-link {% if request.endpoint == 'routes.admin' %}active{% endif %}" href="{{ url_for('routes.admin') }}">Admin Page</a>
+                <a class="nav-link {% if request.endpoint == 'routes.admin' %}active{% endif %}" href="{{ url_for('routes.admin') }}" aria-label="Go to Admin Page">Admin Page</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('routes.logout') }}">Logout</a>
+                <a class="nav-link" href="{{ url_for('routes.logout') }}" aria-label="Logout from the admin">Logout</a>
               </li>
               {% endif %}
             </ul>
@@ -47,11 +47,11 @@
         </div>
       </nav>
       {% block extra_nav %}{% endblock %}
-      <main class="{% block main_class %}{% endblock %}">
+      <main class="{% block main_class %}{% endblock %}" role="main">
         {% block main %}
         {% endblock %}
       </main>
-      <footer>
+      <footer role="contentinfo">
         <p>Designed by James</p>
       </footer>
     </div>

@@ -3,14 +3,14 @@
 {% block title %}Login{% endblock %}
 
 {% block main %}
-      <h1>Login</h1>
+      <h1 id="login-heading" aria-labelledby="login-heading">Login</h1>
 
       {% if error %}
-        <p>{{ error }}</p>
+        <p role="alert" aria-live="assertive">{{ error }}</p>
       {% endif %}
-      <form method="POST">
-        <input type="text" name="username" placeholder="Username" required autofocus>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit" class="btn custom-btn">Login</button>
+      <form method="POST" aria-labelledby="login-heading">
+        <input type="text" name="username" placeholder="Username" required autofocus aria-label="Username">
+        <input type="password" name="password" placeholder="Password" required aria-label="Password">
+        <button type="submit" class="btn custom-btn" aria-label="Login">Login</button>
       </form>
 {% endblock %}

@@ -8,28 +8,28 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
                 <form class="contact-form" method="POST" action="{{ url_for('routes.submit_contact') }}">
-                    <h2 class="text-center mb-4">Contact Me</h2>
+                    <h2 class="text-center mb-4" id="contact-form-heading" aria-labelledby="contact-form-heading">Contact Me</h2>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" required>
+                        <label for="name" class="form-label" aria-label="Name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" required aria-describedby="name-help">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" name="email" id="email" required>
+                        <label for="email" class="form-label" aria-label="Email address">Email address</label>
+                        <input type="email" class="form-control" name="email" id="email" required aria-describedby="email-help">
                     </div>
                     <div class="mb-3">
-                        <label for="subject" class="form-label">Subject</label>
-                        <input type="text" class="form-control" name="subject" id="subject" required>
+                        <label for="subject" class="form-label" aria-label="Subject">Subject</label>
+                        <input type="text" class="form-control" name="subject" id="subject" required aria-describedby="subject-help">
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" name="message" id="message" rows="5" required></textarea>
+                        <label for="message" class="form-label" aria-label="Message">Message</label>
+                        <textarea class="form-control" name="message" id="message" rows="5" required aria-describedby="message-help"></textarea>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-lg custom-btn">Send Message</button>
+                        <button type="submit" class="btn btn-lg custom-btn" aria-label="Send message">Send Message</button>
                     </div>
                     {% if success %}
-                    <p class="success">Your message has been sent. Thank you!</p>
+                    <p class="success" role="alert" aria-live="polite">Your message has been sent. Thank you!</p>
                     {% endif %}
                 </form>
             </div>

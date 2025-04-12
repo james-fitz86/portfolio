@@ -7,27 +7,27 @@
 {% block extra_nav %}
 <nav class="sub-nav navbar navbar-expand-md">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Admin navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('routes.admin') }}#projects">Projects</a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('routes.admin') }}#projects" aria-label="Go to Projects section">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('routes.admin') }}#contact">Contact Submissions</a>
+          <a class="nav-link" href="{{ url_for('routes.admin') }}#contact" aria-label="Go to Contact Submissions section">Contact Submissions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('routes.admin') }}#edit-skills">Edit Skills</a>
+          <a class="nav-link" href="{{ url_for('routes.admin') }}#edit-skills" aria-label="Go to Edit Skills section">Edit Skills</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('routes.admin') }}#edit-delete">Edit/Delete Projects</a>
+          <a class="nav-link" href="{{ url_for('routes.admin') }}#edit-delete" aria-label="Go to Edit/Delete Projects section">Edit/Delete Projects</a>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('routes.admin') }}#new-project">New Project</a>
+          <a class="nav-link" href="{{ url_for('routes.admin') }}#new-project" aria-label="Go to Add New Project section">New Project</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('routes.admin') }}#force-500">Force 500</a>
+          <a class="nav-link" href="{{ url_for('routes.admin') }}#force-500" aria-label="Go to Force 500 error page">Force 500</a>
         </li>
       </ul>
     </div>
@@ -39,12 +39,12 @@
 <h1>Admin Page</h1>
   <section id="projects">
     <div class="admin-wrapper">
-      <h2>Projects Overview</h2>
+      <h2 id="projects-overview" aria-labelledby="projects-overview">Projects Overview</h2>
       {% for project in projects %}
         <div class="project">
           <h2>{{ project.name }}</h2>
           <p>Number of Likes: {{ project.likes }}</p>
-          <h3>Comments</h3>
+          <h3 id="comments" aria-labelledby="comments">Comments</h3>
           <div class="comments-container">
             {% for comment in comments.get(project.id, []) %}
               <div class="comment">
@@ -54,7 +54,7 @@
               <form action="{{ url_for('routes.delete_comment_route') }}" method="post">
                 <input type="hidden" name="project_id" value="{{ project.id|string }}">
                 <input type="hidden" name="index" value="{{ loop.index0 }}">
-                  <button type="submit" class="btn btn-danger custom-btn2">Delete</button>
+                  <button type="submit" class="btn btn-danger custom-btn2" aria-label="Delete Comment">Delete</button>
               </form>
             {% endfor %}
           </div>
@@ -87,7 +87,7 @@
   </section>
   <section id="edit-skills">
     <div class="admin-wrapper">
-      <h2>Edit Skills</h2>
+      <h2 id="edit-skills-section" aria-labelledby="edit-skills-section">Edit Skills</h2>
       <div class="admin-section-container">
         <form method="POST" action="{{ url_for('routes.update_skills') }}">
           <table class="table table-bordered align-middle">
@@ -108,14 +108,14 @@
               {% endfor %}
             </tbody>
           </table>
-          <button type="submit" class="btn custom-btn">Save Changes</button>
+          <button type="submit" class="btn custom-btn" aria-label="Save changes to skills">Save Changes</button>
         </form>
       </div>
     </div>
     </section>
     <section id="edit-delete">
       <div class="admin-wrapper">
-        <h2>Edit/Delete Projects</h2>
+        <h2 id="edit-delete-section" aria-labelledby="edit-delete-section">Edit/Delete Projects</h2>
         <div class="admin-section-container">
           {% for project in projects %}
             <div class="edit-delete-container">
@@ -162,10 +162,10 @@
                     </tr>
                   </tbody>
                 </table>
-                  <button type="submit" class="btn custom-btn">Save Changes</button>
+                  <button type="submit" class="btn custom-btn" aria-label="Save changes to project details">Save Changes</button>
               </form>
               <form method="POST" action="{{ url_for('routes.delete_projects', project_id=project.id) }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
-                <button class="btn btn-danger custom-btn3" type="submit">Delete Project</button>
+                <button class="btn btn-danger custom-btn3" type="submit" aria-label="Delete Project">Delete Project</button>
               </form>
             </div>
           {% endfor %}
@@ -174,7 +174,7 @@
   </section>
   <section id="new-project">
         <div class="admin-wrapper">
-          <h3>Add New Project</h3>
+          <h3 id="new-project-section" aria-labelledby="new-project-section">Add New Project</h3>
           <div class="admin-section-container">
             <form method="POST" action="{{ url_for('routes.add_projects') }}">
               <table class="table table-bordered">
@@ -209,14 +209,14 @@
                   </td>
                 </tr>
               </table>
-              <button class="btn custom-btn" type="submit">Add Project</button>
+              <button class="btn custom-btn" type="submit" aria-label="Add new project">Add Project</button>
             </form>
           </div>
         </div>
   </section>
   <section id="force-500">
     <div class="admin-wrapper">
-      <h2>Force 500 error</h2>
+      <h2 id="force-500-section" aria-labelledby="force-500-section">Force 500 error</h2>
       <div class="admin-section-container">
         <p>To test the error 500 page, click <a href="{{ url_for('routes.raise_500_error') }}">here.</a></p>
       </div>

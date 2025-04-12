@@ -3,16 +3,16 @@
 {% block title %}Projects{% endblock %}
 
 {% block main %}
-        <h1>Projects</h1>
-        <div id="project-wrapper">
+        <h1 id="projects-heading" aria-labelledby="projects-heading">Projects</h1>
+        <div id="project-wrapper" aria-labelledby="projects-heading">
             {% for project in projects %}
-            <div class="project">
-              <h2>{{ project.name }}</h2>
-              <img src="{{ project.image }}">
-              <a href="{{ project.link }}">Visit Site</a>
+            <div class="project" aria-labelledby="project-{{ project.id }}">
+              <h2 id="project-{{ project.id }}-name">{{ project.name }}</h2>
+              <img src="{{ project.image }}" alt="Image for {{ project.name }}" aria-describedby="project-{{ project.id }}-name">
+              <a href="{{ project.link }}" aria-label="Visit the site for {{ project.name }}">Visit Site</a>
               <p>{{ project.description }}</p>
               <h3>Comments</h3>
-              <div class="comments-container">
+              <div class="comments-container" aria-labelledby="comments-heading-{{ project.id }}">
                 {% for comment in comments.get(project.id, []) %}
                   <div class="comment">
                     <h4>{{ comment.name }}</h4>
@@ -20,17 +20,17 @@
                   </div>
                 {% endfor %}
               </div>
-              <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST">
+              <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST" aria-labelledby="add-comment-{{ project.id }}">
                 <h3>Add a comment below!</h3>
                 <div class="input-group mb-3">
-                  <input type="text" name="name" class="form-control" placeholder="Your name" required>
+                  <input type="text" name="name" class="form-control" placeholder="Your name" required aria-label="Your name">
                   <span class="input-group-text"></span>
-                  <input type="text" name="message" class="form-control" placeholder="Your message">
-                  <button type="submit" class="btn custom-btn">Submit</button>
+                  <input type="text" name="message" class="form-control" placeholder="Your message" aria-label="Your message">
+                  <button type="submit" class="btn custom-btn" aria-label="Submit comment">Submit</button>
                 </div>
               </form>
               <form action="{{ url_for('routes.likes', project_id=project.id) }}" method="POST">
-                <button type="submit" class="btn btn-like">Like ❤️</button>
+                <button type="submit" class="btn btn-like" aria-label="Like project {{ project.name }}"></button>>Like ❤️</button>
               </form>
             </div>
             {% endfor %}
