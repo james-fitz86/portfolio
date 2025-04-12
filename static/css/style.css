@@ -1,8 +1,12 @@
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 95px;
+}
 #wrapper{
   margin: 0;
   width: 100%;
   margin: auto;
-  height: 100dvh;
+  min-height: 100dvh;
 }
 body{
   margin: 0;
@@ -10,7 +14,7 @@ body{
 }
 main{
   padding: min(5em, 8%);
-  padding-top: 80px;
+  padding-top: 60px;
   background-color: #1a1818;
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
@@ -71,6 +75,12 @@ footer p{
 }
 .navbar-toggler {
   margin-bottom: 16px;
+}
+.sub-nav{
+  display: none !important;
+}
+main{
+  padding-top: 80px;
 }
 }
 #project-wrapper, #contact-wrapper{
@@ -254,4 +264,25 @@ footer p{
 }
 .custom-btn3:hover{
   color: #ffffff !important;
+}
+main.has-sub-nav {
+  padding-top: 125px;
+}
+.sub-nav {
+  position: fixed !important;
+  top: 56px !important;
+  left: 0 !important;
+  z-index: 1031 !important;
+  background-color: #17966e !important;
+  width: 100% !important;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 !important;
+  padding: 2px !important;
+  box-shadow: none !important;
+}
+.sub-nav .nav-link{
+  font-size: 0.9rem;
+  color: #f0f0f0;
+  border-radius: 18px;
+  transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
 }
