@@ -3,7 +3,7 @@
 {% block title %}Unexpected Error{% endblock %}
     
 {% block main %}
-    <h1>Unexpected Error</h1>
-    <p>Apologies for the inconvenience, there has been an unexpected error.</p>
-    <p>The Administrator has been notified, please try again later.</p>
+    <h1 role="alert" aria-live="assertive">Unexpected Error</h1>
+    <p aria-describedby="error-message">Apologies for the inconvenience, there has been an unexpected error.</p>
+    <p id="error-message">The Administrator has been notified, please try again later.</p>
 {% endblock %}
