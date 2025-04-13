@@ -61,7 +61,7 @@ def admin():
         return render_template('admin.html', projects=get_projects(), comments=get_comments(), messages=get_messages(), skills=get_skills())
 
 
-    return redirect(url_for("routes.home"))
+    return abort(404)
 
 @routes_blueprint.route('/raise_500')
 def raise_500_error():
