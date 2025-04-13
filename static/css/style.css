@@ -286,3 +286,19 @@ main.has-sub-nav {
   border-radius: 18px;
   transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
 }
+#skiplink a {
+  padding: 6px;
+  position: absolute;
+  top: 0;
+  left:  0;
+  background-color: #d1d1d1;
+  color: #000000;
+  text-decoration: none;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+}
+#skiplink a:focus {
+  z-index: 10000;
+} 
