@@ -30,9 +30,9 @@
           <form action="{{ url_for('routes.enter_comment', project_id=project.id) }}" method="POST" aria-labelledby="add-comment-{{ project.id }}">
             <h3>Add a comment below!</h3>
             <div class="input-group mb-3">
-              <input type="text" name="name" class="form-control" placeholder="Your name" required aria-label="Your name">
+              <input type="text" name="name" class="form-control" placeholder="Your name" required minlength="2" maxlength="30" aria-label="Your name">
               <span class="input-group-text"></span>
-              <input type="text" name="message" class="form-control" placeholder="Your message" aria-label="Your message">
+              <input type="text" name="message" class="form-control" placeholder="Your message" required minlength="5" maxlength="100" aria-label="Your message">
               <button type="submit" class="btn custom-btn" aria-label="Submit comment">Submit</button>
             </div>
           </form>
