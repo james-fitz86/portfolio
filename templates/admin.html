@@ -46,22 +46,28 @@
     <div class="admin-wrapper">
       <h2 id="projects-overview" aria-labelledby="projects-overview">Projects Overview</h2>
       {% for project in projects %}
-        <div class="project">
-          <h2>{{ project.name }}</h2>
-          <p>Number of Likes: {{ project.likes }}</p>
-          <h3 id="comments" aria-labelledby="comments">Comments</h3>
-          <div class="comments-container">
-            {% for comment in comments.get(project.id, []) %}
-              <div class="comment">
-                <h4>{{ comment.name }}</h4>
-                <p>{{ comment.message }}</p>
-              </div>
-              <form action="{{ url_for('routes.delete_comment_route') }}" method="post">
-                <input type="hidden" name="project_id" value="{{ project.id|string }}">
-                <input type="hidden" name="index" value="{{ loop.index0 }}">
-                  <button type="submit" class="btn btn-danger custom-btn2" aria-label="Delete Comment">Delete</button>
-              </form>
-            {% endfor %}
+        <div class="admin-project">
+          <div class="project-heading">
+            <h2>{{ project.name }}</h2>
+            <p>Number of Likes: {{ project.likes }}</p>
+            <h3 id="comments" aria-labelledby="comments">Comments</h3>
+          </div>
+          <div class="comments-scroll">
+            <span class="arrow2 left" tabindex="0" role="button" aria-label="Scroll left">&larr;</span>
+            <div class="comments-container">
+              {% for comment in comments.get(project.id, []) %}
+                <div class="comment">
+                  <h4>{{ comment.name }}</h4>
+                  <p>{{ comment.message }}</p>
+                </div>
+                <form action="{{ url_for('routes.delete_comment_route') }}" method="post">
+                  <input type="hidden" name="project_id" value="{{ project.id|string }}">
+                  <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="btn btn-danger custom-btn2" aria-label="Delete Comment">Delete</button>
+                </form>
+              {% endfor %}
+            </div>
+            <span class="arrow2 right" tabindex="0" role="button" aria-label="Scroll right">&rarr;</span>
           </div>
         </div>
       {% endfor %}
