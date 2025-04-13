@@ -301,4 +301,7 @@ main.has-sub-nav {
 }
 #skiplink a:focus {
   z-index: 10000;
-} 
+}
+.error{
+  color: #ff0000;
+}
