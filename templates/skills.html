@@ -43,11 +43,15 @@
         {% endif %}
 
       <div class="progress-bar-container" aria-label="Skill progress for {{ skill }}">
-        <div class="progress-bar" style="width: {{ level }}%; background-color: #1dd399" aria-valuenow="{{ level }}" aria-valuemin="0" aria-valuemax="100" 
+        <div class="progress-bar" style="width: 0%; background-color: #1dd399" aria-valuenow="{{ level }}" aria-valuemin="0" aria-valuemax="100" data-level="{{ level }}" 
         aria-label="Progress bar for {{ skill }} at {{ level }}%"></div>
       </div>
     </div>
   {% endfor %}
 </div>
 
+{% endblock %}
+
+{% block extra_script %}
+<script src="{{ url_for('static', filename='js/skills.js') }}"></script>
 {% endblock %}
