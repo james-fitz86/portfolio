@@ -116,15 +116,21 @@ main{
   color: #ffffff !important;
 }
 .comments-container{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex: 0 0 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 16px;
+  color: #000000;
+  max-width: clamp(180px, 60vw, 730px);
+  margin: 0 auto;
+  height: auto;
 }
 .comment{
   background: #ffffff;
   border: 1px solid #1dd399;
   padding: 12px;
   border-radius: 8px;
+  margin-bottom: 8px;
 }
 
 .comment h4{
@@ -187,7 +193,7 @@ main{
   width: clamp(250px, 80vw, 800px);
   height: auto;
 }
-.admin-wrapper, .message-wrapper{
+.admin-wrapper, .message-wrapper, .project-wrapper{
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -304,4 +310,52 @@ main.has-sub-nav {
 }
 .error{
   color: #ff0000;
+}
+.comments-scroll{
+  position: relative;
+  display: flex;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  flex: 1;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.admin-project{
+  display: block;
+  box-sizing: border-box;
+  padding: 0px;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: clamp(250px, 80vw, 800px);
+  height: auto;
+}
+.project-heading{
+  padding: 16px;
+  padding-bottom: 0;
+}
+.arrow2{
+  top: 75px;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem;
+  color: #1dd399;
+}
+
+.arrow2:hover{
+  color: #17b885;
+}
+.arrow2.left{
+  left: 0.1rem;
+}
+
+.arrow2.right{
+  right: 0.1rem;
 }
