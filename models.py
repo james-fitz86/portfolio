@@ -3,6 +3,7 @@ import shelve
 import json
 
 def get_greeting():
+    """Return a greeting based on the current time of day."""
     current_hour = datetime.now().hour
 
     if 5 <= current_hour < 12:
@@ -15,6 +16,7 @@ def get_greeting():
         return "Hello Night Owl"
 
 def init_shelve():
+    """Initialize the shelve database with default data from JSON if keys are missing."""
     with shelve.open('data/data_store') as db:
         if "projects" not in db or "comments" not in db or "messages" not in db:
             with open("data/data.json") as f:
@@ -25,23 +27,27 @@ def init_shelve():
             db["messages"] = data["contact_datastore"]
 
 def get_projects():
+    """Retrieve all project entries from the database."""
     with shelve.open("data/data_store") as db:
         return db.get("projects", [])
 
 def get_comments():
+    """Retrieve all comments from the database."""
     with shelve.open("data/data_store") as db:
         return db.get("comments", {})
 
 def get_skills():
+    """Retrieve all skill data from the database."""
     with shelve.open("data/data_store") as db:
         return db.get("skills", {})
 
 def get_messages():
+    """Retrieve all contact messages from the database."""
     with shelve.open("data/data_store") as db:
         return db.get("messages", [])
 
 def add_message(name, email, subject, message):
-     
+    """Add a new contact message to the database."""
     new_message = {
         "name": name,
         "email": email,
@@ -56,6 +62,7 @@ def add_message(name, email, subject, message):
         db.sync()
 
 def add_comment(project_id, name, message):
+    """Add a comment to a specific project by ID."""
     with shelve.open("data/data_store", writeback=True) as db:
         comments = db.get("comments", {})
         comments.setdefault(project_id, []).append({"name": name, "message": message})
@@ -63,6 +70,7 @@ def add_comment(project_id, name, message):
         db.sync()
 
 def add_like(project_id):
+    """Increment the like count for a specific project by ID."""
     with shelve.open("data/data_store", writeback=True) as db:
         projects = db.get("projects", [])
         for project in projects:
@@ -73,6 +81,7 @@ def add_like(project_id):
         db.sync()
 
 def delete_comment_by_index(project_id, index):
+    """Delete a comment by its index from a specific project's comment list."""
     with shelve.open("data/data_store", writeback=True) as db:
         comments = db.get("comments", {})
         project_id = int(project_id)
@@ -82,6 +91,7 @@ def delete_comment_by_index(project_id, index):
             db.sync()
 
 def delete_message(index):
+    """Delete a message by its index from the message list."""
     with shelve.open("data/data_store", writeback=True) as db:
         messages = db['messages']
         if 0 <= index < len(messages):
@@ -90,6 +100,7 @@ def delete_message(index):
             db.sync()
 
 def get_experience():
+    """Calculate and return the number of months since the start date (Sept 24, 2024)."""
     start_date = datetime(2024, 9, 24)
     today = datetime.now()
 
@@ -100,11 +111,13 @@ def get_experience():
     return months_since
 
 def save_skills(updated_skills, path="data/data_store"):
+    """Save updated skill data to the database."""
     with shelve.open(path, writeback=True) as db:
         db["skills"] = updated_skills
         db.sync()
 
 def edit_project(data, path="data/data_store"):
+    """Edit an existing project's data based on its ID."""
     project_id = data.get("id")
 
     with shelve.open(path, writeback=True) as db:
@@ -129,6 +142,7 @@ def edit_project(data, path="data/data_store"):
         db.sync()
 
 def add_project(data, path="data/data_store"):
+    """Add a new project to the database."""
     with shelve.open(path, writeback=True) as db:
         projects = db.get("projects", [])
         new_id = max((p["id"] for p in projects), default=0) + 1
@@ -148,6 +162,7 @@ def add_project(data, path="data/data_store"):
         db.sync()
 
 def delete_project(project_id, path="data/data_store"):
+    """Delete a project by its ID from the database."""
     with shelve.open(path, writeback=True) as db:
         projects = db.get("projects", [])
         projects = [p for p in projects if p["id"] != project_id]
