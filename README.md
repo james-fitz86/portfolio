@@ -85,17 +85,30 @@ ADMIN_PASSWORD=your_admin_password
 SECRET_KEY=your_secret_key
 
 ### 5. Run the Flask Application
+In `app.py`, ensure you have the following at the bottom of your file to run the app locally:
+
+```python
+if __name__ == '__main__':
+    app.run(debug=True, port=8080)
+```
+
+Then run the app with:
 ```bash
 python app.py
 ```
 
 Access the website locally at `http://127.0.0.1:8080/`
 
-## Deployment to Render
-1. Push your code to **GitHub**
-2. Sign up on [Render.com](https://render.com/)
-3. Connect your repository
-4. Create a new **Web Service**
-5. Set the **Build Command:** `pip install -r requirements.txt`
-6. Set the **Start Command:** `gunicorn app:app`
-7. Deploy and access the live site 🚀
+## Deployment to Render  
+1. Push your code to **GitHub**  
+2. Sign up on [Render.com](https://render.com/)  
+3. Connect your repository  
+4. Create a new **Web Service**  
+5. Set the **Build Command:** `pip install -r requirements.txt`  
+6. Set the **Start Command:** `gunicorn app:app`  
+7. Under the **Environment** tab, set the environment variables:
+   - `ADMIN_USERNAME=your_username`  
+   - `ADMIN_PASSWORD=your_password`  
+   - `SECRET_KEY=your_secret_key`  
+   These should match the variables in your `.env` file but **do not upload** your `.env` file to GitHub.  
+8. Deploy and access the live site 🚀
