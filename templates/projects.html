@@ -37,7 +37,7 @@
             </div>
           </form>
           <form action="{{ url_for('routes.likes', project_id=project.id) }}" method="POST">
-            <button type="submit" class="btn btn-like" aria-label="Like project {{ project.name }}">Like ❤️</button>
+            <button type="submit" class="btn btn-like like-button" aria-label="Like project {{ project.name }}">Like ❤️</button>
           </form>
         </div>
       {% endfor %}

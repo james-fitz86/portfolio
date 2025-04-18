@@ -9,50 +9,52 @@
 
 {% block main %}
   <section id="main-content" role="main" aria-labelledby="skills-heading">
-    <h2 id="skills-heading" aria-labelledby="skills-heading">My Skills</h2>
-    <p id="intro-paragraph" aria-describedby="intro-paragraph" tabindex="0">
-      I have a solid foundation in web development, with proficiency in core
-      front-end technologies like HTML and CSS. My understanding of HTML allows me
-      to build well-structured, semantic web pages, ensuring accessibility and SEO
-      optimization. Coupled with my expertise in CSS, I can create responsive,
-      visually appealing designs that provide seamless user experiences across
-      devices.
-    </p>
-    <p id="js-paragraph" aria-describedby="js-paragraph" tabindex="0">
-      In addition to front-end development, I have strong skills in Javascript,
-      enabling me to add interactivity and dynamic features to websites. My
-      knowledge of Javascript is consistently improving, and I can efficiently
-      implement complex functionalities, such as form validation, animations, and
-      data handling. I’m familiar with various JavaScript libraries and frameworks,
-      which help me develop robust applications.
-    </p>
-    <p id="python-paragraph" aria-describedby="python-paragraph" tabindex="0">
-      As for back-end development, I have experience with Python, which serves as
-      the backbone for many of my projects. While my proficiency in Python is still
-      growing, I’m constantly expanding my knowledge of the language to tackle more
-      complex tasks, such as working with APIs and databases. My work in Python has
-      enabled me to develop dynamic web applications and improve the scalability of
-      projects.
-    </p>
-    <p id="skills-summary" aria-describedby="skills-summary" tabindex="0">
-      Overall, my skills reflect a strong foundation in both front-end and back-end
-      development, with a focus on continuous improvement and keeping up with the
-      latest trends and technologies.
-    </p>
-    <div class="skills-container" role="region" aria-labelledby="skills-heading">
-      {% for skill, level in skills.items() %}
-        <div class="skill" aria-labelledby="skill-{{ skill }}">
-          <label id="skill-{{ skill }}" aria-label="Skill: {{ skill }} with proficiency at {{ level }}%">{{ skill }} ({{ level }}%)</label>
-            {% if level >= 90 %}
-              <span class="badge" aria-label="Expert level">Expert</span>
-            {% endif %}
-          <div class="progress-bar-container" aria-label="Skill progress for {{ skill }}" aria-live="polite">
-            <div class="progress-bar" style="width: 0%; background-color: #1dd399" aria-valuenow="{{ level }}" aria-valuemin="0" aria-valuemax="100" data-level="{{ level }}" 
-              aria-label="Progress bar for {{ skill }} at {{ level }}%">
+    <div class="content-container">
+      <h2 id="skills-heading" aria-labelledby="skills-heading">My Skills</h2>
+      <p id="intro-paragraph" aria-describedby="intro-paragraph" tabindex="0">
+        I have a solid foundation in web development, with proficiency in core
+        front-end technologies like HTML and CSS. My understanding of HTML allows me
+        to build well-structured, semantic web pages, ensuring accessibility and SEO
+        optimization. Coupled with my expertise in CSS, I can create responsive,
+        visually appealing designs that provide seamless user experiences across
+        devices.
+      </p>
+      <p id="js-paragraph" aria-describedby="js-paragraph" tabindex="0">
+        In addition to front-end development, I have strong skills in Javascript,
+        enabling me to add interactivity and dynamic features to websites. My
+        knowledge of Javascript is consistently improving, and I can efficiently
+        implement complex functionalities, such as form validation, animations, and
+        data handling. I’m familiar with various JavaScript libraries and frameworks,
+        which help me develop robust applications.
+      </p>
+      <p id="python-paragraph" aria-describedby="python-paragraph" tabindex="0">
+        As for back-end development, I have experience with Python, which serves as
+        the backbone for many of my projects. While my proficiency in Python is still
+        growing, I’m constantly expanding my knowledge of the language to tackle more
+        complex tasks, such as working with APIs and databases. My work in Python has
+        enabled me to develop dynamic web applications and improve the scalability of
+        projects.
+      </p>
+      <p id="skills-summary" aria-describedby="skills-summary" tabindex="0">
+        Overall, my skills reflect a strong foundation in both front-end and back-end
+        development, with a focus on continuous improvement and keeping up with the
+        latest trends and technologies.
+      </p>
+      <div class="skills-container" role="region" aria-labelledby="skills-heading">
+        {% for skill, level in skills.items() %}
+          <div class="skill" aria-labelledby="skill-{{ skill }}">
+            <label id="skill-{{ skill }}" aria-label="Skill: {{ skill }} with proficiency at {{ level }}%">{{ skill }} ({{ level }}%)</label>
+              {% if level >= 90 %}
+                <span class="badge" aria-label="Expert level">Expert</span>
+              {% endif %}
+            <div class="progress-bar-container" aria-label="Skill progress for {{ skill }}" aria-live="polite">
+              <div class="progress-bar" style="width: 0%; background-color: #1dd399" aria-valuenow="{{ level }}" aria-valuemin="0" aria-valuemax="100" data-level="{{ level }}" 
+                aria-label="Progress bar for {{ skill }} at {{ level }}%">
+              </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
   </section>
 {% endblock %}
