@@ -8,7 +8,9 @@
 {% block title %}Page not found{% endblock %}
     
 {% block main %}
-    <h1 id="main-content" role="alert" aria-live="assertive">Page Not Found</h1>
-    <p aria-describedby="url-check">Please check the url you have typed.</p>
-    <p><a href="{{ url_for('routes.home') }}" aria-label="Go back to home page">Go back</a> to home page.</p>
+    <div class="content-container">
+        <h1 id="main-content" role="alert" aria-live="assertive">Page Not Found</h1>
+        <p aria-describedby="url-check">Please check the url you have typed.</p>
+        <p><a href="{{ url_for('routes.home') }}" aria-label="Go back to home page">Go back</a> to home page.</p>
+    </div>
 {% endblock %}
