@@ -50,6 +50,8 @@ portfolio/
 │── .gitignore               # Ignore unnecessary files
 │── render.yaml              # Render deployment config (if needed)
 │── routes.py                # Routes and view functions
+│── sitemap.xml              # Sitemap for search engines  
+└──  robots.txt               # Robots.txt for crawler instructions
 ```
 
 ## Setup & Installation
@@ -112,3 +114,8 @@ Access the website locally at `http://127.0.0.1:8080/`
    - `SECRET_KEY=your_secret_key`  
    These should match the variables in your `.env` file but **do not upload** your `.env` file to GitHub.  
 8. Deploy and access the live site 🚀
+
+## 🌐 Live Demo
+
+Check out the live version of this project on Render:  
+👉 [https://portfolio-th19.onrender.com/]
