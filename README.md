@@ -51,7 +51,7 @@ portfolio/
 │── render.yaml              # Render deployment config (if needed)
 │── routes.py                # Routes and view functions
 │── sitemap.xml              # Sitemap for search engines  
-└──  robots.txt               # Robots.txt for crawler instructions
+└── robots.txt               # Robots.txt for crawler instructions
 ```
 
 ## Setup & Installation
